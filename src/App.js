@@ -1,23 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './Components/Header/Header.js';
+import Searchbox from './Components/Searchbox/Searchbox.js';
+import { useState } from 'react';
+import Result from './Components/Result/Result';
+
+const name= require('@rstacruz/startup-name-generator');
 
 function App() {
+  // console.log(name(''));
+    // var temp;  
+  const [value, setvalue] = useState("expand")
+  // const [temp, setTemp] = useState('')
+  // let temp;
+  const [e, sete] = useState("")
+  const fun= (e)=>{
+
+    // return 
+
+    if(e.target.value){
+        // console.log(e.target.value);
+      sete(e.target.value)
+        setvalue("contract");
+        // temp=e;
+    }
+    else {setvalue("expand")
+      sete('');
+  }
+    
+  }
+    // const [design, setdesign] = useState([])
+  // console.log(temp);
+  // console.log(e);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header  change={value}/>
+      <Searchbox  search={fun}/>
+      {/* {e.length===1  && <Result details={name(e)} /> } */}
+      {e !=="" &&<Result details={name(e)}  />}
+
+
     </div>
   );
 }
